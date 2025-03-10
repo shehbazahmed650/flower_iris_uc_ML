@@ -3,9 +3,15 @@ import pandas as pd
 import numpy as np
 import joblib
 import plotly.express as px
+import os  # Import the os module
 
-# Load the trained model
-model = joblib.load(r"D:\flower_iris_uc_ML\trained_model.joblib")
+# Get the current directory of the script
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Load the trained model using a relative path
+model_path = os.path.join(current_dir, "trained_model.joblib")
+model = joblib.load(model_path)  # ✅ FIXED: Works on Streamlit Cloud
+
 
 # Define required features and realistic value ranges for Iris dataset
 required_features = ["SepalLengthCm", "SepalWidthCm", "PetalLengthCm", "PetalWidthCm"]
